@@ -12,7 +12,6 @@ connectDB();
 
 const app = express();
 
-app.options('*', cors());
 app.use(cors({
   origin: [
     'https://gigflow-phi-peach.vercel.app',
@@ -29,6 +28,3 @@ app.use(morgan('dev'));
 app.use('/api/auth', authRoutes);
 app.use('/api/leads', leadRoutes);
 app.use(errorHandler);
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
