@@ -11,6 +11,7 @@ dotenv.config();
 connectDB();
 
 const app = express();
+const PORT = parseInt(process.env.PORT || '10000', 10);
 
 app.use(cors({
   origin: [
@@ -22,9 +23,12 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 app.use(express.json());
 app.use(morgan('dev'));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/leads', leadRoutes);
 app.use(errorHandler);
+
+app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
