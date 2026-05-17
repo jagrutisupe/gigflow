@@ -1,86 +1,57 @@
-
-# GigFlow – Smart Leads Dashboard
-
+GigFlow – Smart Leads Dashboard
 A full-stack Lead Management Dashboard built with the MERN stack.
+Tech Stack
 
-## Tech Stack
+Frontend: React, TypeScript, TailwindCSS, Zustand, TanStack Query
+Backend: Node.js, Express, TypeScript, MongoDB, Mongoose
+Auth: JWT + bcrypt
+Deployment: Vercel (frontend), Render (backend), Docker
 
-- **Frontend:** React, TypeScript, TailwindCSS, Zustand, TanStack Query
-- **Backend:** Node.js, Express, TypeScript, MongoDB, Mongoose
-- **Auth:** JWT + bcrypt
-- **DevOps:** Docker, Docker Compose
 
-## Features
+Prerequisites
 
-- JWT Authentication with Role-Based Access Control (Admin / Sales)
-- Full Lead CRUD (Create, Read, Update, Delete)
-- Advanced filtering by Status, Source, Sort
-- Debounced search by name or email
-- Backend pagination (10 records per page)
-- CSV Export
-- View single lead details
-- Dark mode support
-- Responsive design
+Node.js 18+
+MongoDB running locally
+npm
 
-## Roles
 
-| Feature | Admin | Sales |
-|---------|-------|-------|
-| View Leads | ✅ | ✅ |
-| Add Lead | ✅ | ✅ |
-| Edit Lead | ✅ | ✅ |
-| Delete Lead | ✅ | ❌ |
-
-## Setup Instructions
-
-### Prerequisites
-- Node.js 18+
-- MongoDB running locally
-
-### Backend
-```bash
-cd server
+Local Setup
+1. Clone the repository
+bashgit clone https://github.com/jagrutisupe/gigflow.git
+cd gigflow
+2. Backend
+bashcd server
 npm install
 cp .env.example .env
 npm run dev
-```
-
-### Frontend
-```bash
-cd client
+Backend runs at: http://localhost:5000
+3. Frontend
+Open a new terminal:
+bashcd client
 npm install
 cp .env.example .env
 npm run dev
-```
+Frontend runs at: http://localhost:5173
 
-### Docker
-```bash
-docker-compose up --build
-```
+Docker Setup
+bashdocker-compose up --build
 
-## API Endpoints
+Environment Variables
+Server (server/.env)
+MONGO_URI=mongodb://localhost:27017/gigflow
+JWT_SECRET=your_secret_key
+JWT_EXPIRES_IN=7d
+PORT=5000
+Client (client/.env)
+VITE_API_URL=http://localhost:5000/api
 
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| POST | /api/auth/register | Register user | No |
-| POST | /api/auth/login | Login user | No |
-| GET | /api/leads | Get all leads | Yes |
-| POST | /api/leads | Create lead | Yes |
-| PUT | /api/leads/:id | Update lead | Yes |
-| DELETE | /api/leads/:id | Delete lead | Admin only |
-| GET | /api/leads/export | Export CSV | Yes |
+API Endpoints
+MethodEndpointDescriptionAuthPOST/api/auth/registerRegister userNoPOST/api/auth/loginLogin userNoGET/api/leadsGet all leadsYesPOST/api/leadsCreate leadYesPUT/api/leads/:idUpdate leadYesDELETE/api/leads/:idDelete leadAdmin onlyGET/api/leads/exportExport CSVYes
 
-## Environment Variables
+Roles
+FeatureAdminSalesView Leads✅✅Add Lead✅✅Edit Lead✅✅Delete Lead✅❌
 
-### Server (.env)
-| Variable | Description |
-|----------|-------------|
-| MONGO_URI | MongoDB connection string |
-| JWT_SECRET | Secret key for JWT |
-| JWT_EXPIRES_IN | Token expiry e.g. 7d |
-| PORT | Server port default 5000 |
+Live Demo
 
-### Client (.env)
-| Variable | Description |
-|----------|-------------|
-| VITE_API_URL | Backend API URL |
+Frontend: https://gigflow-phi-peach.vercel.app
+Backend: https://gigflow-server-tfv9.onrender.com
